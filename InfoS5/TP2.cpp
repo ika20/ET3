@@ -59,20 +59,20 @@ int main() {
     
     switch(couleur){
         case 'r':
-            cout << "ROUGE";
-            break;
+            //cout << "ROUGE";
+            //break;
         case 'R':
             cout << "ROUGE";
             break;
         case 'v':
-            cout << "VERT";
-            break;
+            //cout << "VERT";
+            //break;
         case 'V':
             cout << "VERT";
             break;
        case 'b':
-            cout << "BLEU";
-            break;
+            //cout << "BLEU";
+            //break;
         case 'B':
             cout << "BLEU";
             break;
@@ -97,3 +97,89 @@ int main() {
         cout << "VAPEUR";
     }
 }
+
+
+// Exercice 3
+int main() {
+    int nb_notes;
+    cout << "Saisissez le nombre de notes : ";
+    cin >> nb_notes;
+    float note;
+    float somme=0;
+    
+    for(int i=1; i<=nb_notes; i+=1){
+        do{
+            cout << "Entrez la note n°" << i << " : ";
+            cin >> note;
+        }while(note < 0 or note > 20);
+        somme += note;
+    }
+    cout << "La moyenne est de " << somme/nb_notes;
+}
+
+
+// Exercice 4
+int main() {
+    int nombre = rand() % 101;
+    int essai;
+    int i = 0;
+    cout << "Entrez un nombre entre 0 et 100 : ";
+    do{
+        cin >> essai;
+        if(essai<nombre){
+            cout << "Entrez un nombre plus grand : ";
+        }
+        else if(essai>nombre){
+            cout << "Entrez un nombre plus petit : ";
+        }
+        else{
+            cout << "Vous avez trouvé le bon nombre";
+        }
+        i+=1;
+    }while(essai!=nombre and i<9);
+    if(essai!=nombre){
+        cin >> essai;
+        if(essai == nombre){
+            cout << "Vous avez trouvé le bon nombre";;
+        }
+        else{
+            cout << "Perdu";
+        }
+    }
+}
+
+
+// Exercice 5
+int main()
+{
+    int u0=1;
+    int u1=1;
+    int un=1;
+    for(int i=1; i<=2; i+=1){
+        int temp=un;
+        un=u0+u1;
+        u0=u1;
+        u1=temp;
+    }
+    cout << un;
+    return 0;
+}
+
+
+// Exercice 6
+// 1)
+int main()
+{
+    int chiffres = 0;
+    int nb;
+    cout << "Saisissez un nombre : ";
+    cin >> nb;
+    while(nb >=1){
+        nb=nb/10;
+        chiffres += 1;
+    }
+    cout << chiffres;
+}
+
+// 2)
+
