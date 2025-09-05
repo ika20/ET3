@@ -119,8 +119,28 @@ int main() {
 
 
 // Exercice 4
-int main() {
-    int nombre = rand() % 101;
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+
+
+// Prototypes des fonctions
+void randomize();
+int random(int n);
+
+
+/**
+ * \fn int main()
+ * \brief Fonction main. Exemple d'utilisation de la fonction
+ *  de generation d'un nombre aleatoire
+ *
+ * \param Void.
+ * \return 0 si le programme s'est correctement exécuté.
+ */
+int main()
+{
+    int nombre = random(101);
     int essai;
     int i = 0;
     cout << "Entrez un nombre entre 0 et 100 : ";
@@ -147,6 +167,36 @@ int main() {
         }
     }
 }
+
+
+/**
+ * \fn void randomize()
+ * \brief Fonction d'initialisation du générateur pseudo-aléatoire.
+ *
+ */
+void randomize()
+{
+    srand(time(NULL));
+    rand(); // Premier tirage parfois pas aleatoire
+}
+
+
+/**
+ * \fn int random(int n)
+ * \brief Fonction de génération d'un nombre pseudo-aléatoire.
+ *
+ * \param n Valeur maximale du nombre à générer.
+ * \return Nombre pseudo-aléatoire généré, compris entre 0 et (n-1).
+ */
+int random(int n)
+{
+    double val;
+
+    val = (double)rand() / ((double)RAND_MAX + 1.0) * (double)n;
+
+    return (int)floor(val);
+}
+
 
 
 // Exercice 5
@@ -182,4 +232,27 @@ int main()
 }
 
 // 2)
+#include <cmath>
+int main()
+{
+    int chiffres = 0;
+    int nb;
+    cout << "Saisissez un nombre : ";
+    cin >> nb;
+    int nb2 = nb;
+    while(nb >=1){
+        nb=nb/10;
+        chiffres += 1;
+    }
+    int puissance = pow(10, chiffres-1);
+    for(int i=0; i<chiffres; i+=1){
+        cout << nb2/puissance << endl;
+        nb2 = nb2-puissance*(nb2/puissance);
+        puissance/=10;
+    }
+    cout << "chiffres : " << chiffres;
+}
 
+
+
+// Exercice 7
