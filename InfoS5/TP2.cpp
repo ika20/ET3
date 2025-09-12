@@ -256,3 +256,118 @@ int main()
 
 
 // Exercice 7
+/**
+ * \file generation_nombre_aleatoire.cpp
+ * \brief Programme de démonstration de génération aléatoire et fonctions associées
+ * \author Cédric BERNEZ
+ * \version 1.1
+ * \date 16 septembre 2021
+ *
+ * Programme exemple de génération d'un nombre aléatoire en C++.
+ *
+ */
+
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+
+using namespace std;
+
+
+// Prototypes des fonctions
+void randomize();
+int random(int n);
+
+
+/**
+ * \fn int main()
+ * \brief Fonction main. Exemple d'utilisation de la fonction
+ *  de generation d'un nombre aleatoire
+ *
+ * \param Void.
+ * \return 0 si le programme s'est correctement exécuté.
+ */
+int main()
+{
+    randomize();
+    int score1 = 0;
+    int score2 = 0;
+    int lancer = 0;
+
+    while(score1<50 && score2<50){
+        do{
+            cout << endl << "**** Tour du Joueur 1 ****" << endl;
+            lancer = random(6)+1;
+            cout << "--> Joueur 1 a obtenu " << lancer << endl;
+            if(lancer%2==0){
+                score1 += lancer;
+            }
+            else if(lancer==3){
+                score1 *= 2;
+            }
+            else if(lancer==5){
+                score1 -= 2;
+            }
+            cout << "Score de Joueur 1 : " << score1 << endl;
+        }while(lancer!=1 && score1<50);
+
+        if(score1!=50){
+            do{
+                cout << endl << "**** Tour du Joueur 2 ****" << endl;
+                lancer = random(6)+1;
+                cout << "--> Joueur 2 a obtenu " << lancer << endl;
+                if(lancer%2==0){
+                    score2 += lancer;
+                }
+                else if(lancer==3){
+                    score2 *= 2;
+                }
+                else if(lancer==5){
+                    score2 -= 2;
+                }
+                cout << "Score de Joueur 2 : " << score1 << endl;
+            }while(lancer!=1 && score2<50);
+        }
+    }
+
+    if(score1>=50){
+        cout << "Joueur 1 a gagné avec un score de " << score1 << ", Joueur 2 a eu " << score2 << " points.";
+    }
+    else{
+        cout << "Joueur 2 a gagné avec un score de " << score2 << ", Joueur 1 a eu " << score1 << " points.";
+    }
+
+
+    return 0;
+}
+
+
+/**
+ * \fn void randomize()
+ * \brief Fonction d'initialisation du générateur pseudo-aléatoire.
+ *
+ */
+void randomize()
+{
+    srand(time(NULL));
+    rand(); // Premier tirage parfois pas aleatoire
+}
+
+
+/**
+ * \fn int random(int n)
+ * \brief Fonction de génération d'un nombre pseudo-aléatoire.
+ *
+ * \param n Valeur maximale du nombre à générer.
+ * \return Nombre pseudo-aléatoire généré, compris entre 0 et (n-1).
+ */
+int random(int n)
+{
+    double val;
+
+    val = (double)rand() / ((double)RAND_MAX + 1.0) * (double)n;
+
+    return (int)floor(val);
+}
