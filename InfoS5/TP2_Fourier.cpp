@@ -3,13 +3,13 @@
 
 using namespace std;
 
-const unsigned int N = 4;
+const unsigned int N = 100;
 const float PI = 3.14159265359;
 
 
 float a0(double tab[]){
     float somme = 0;
-    for(int i=0; i<N; i+=1){
+    for(unsigned int i=0; i<N; i+=1){
         somme += tab[i];
     }
     return somme/N;
@@ -18,8 +18,16 @@ float a0(double tab[]){
 
 double ap(double tab[], int p){
     double somme = 0;
-    for(int i=0; i<N; i+=1){
+    for(unsigned int i=0; i<N; i+=1){
         somme += ((double)tab[i])*cos(((float)p*i*2*PI)/N);
+    }
+    return 2*(somme/N);
+}
+
+double bp(double tab[], int p){
+    double somme = 0;
+    for(unsigned int i=0; i<N; i+=1){
+        somme += ((double)tab[i])*sin(((float)p*i*2*PI)/N);
     }
     return 2*(somme/N);
 }
@@ -34,31 +42,31 @@ int main(){
     double tab4[N];
 
     // Remplissage des tableaux
-    for(int i=0; i<(N/4); i+=1){
-        tab1[i] = sin(2*PI*(i/N));
+    for(unsigned int i=0; i<(N/4); i+=1){
+        tab1[i] = sin(2*PI*((float)i/N));
         tab2[i] = 0;
-        tab3[i] = 0.2*(i/N);
+        tab3[i] = 200*((float)i/N);
         tab4[i] = 0;
     }
 
-    for(int i=(N/4); i<(N/2); i+=1){
-        tab1[i] = sin(2*PI*(i/N));
+    for(unsigned int i=(N/4); i<(N/2); i+=1){
+        tab1[i] = sin(2*PI*((float)i/N));
         tab2[i] = 0;
-        tab3[i] = -0.2*(i/N)+100;
+        tab3[i] = -200*((float)i/N)+100;
         tab4[i] = 50;
     }
 
-    for(int i=(N/2); i<((3*N)/4); i+=1){
-        tab1[i] = sin(2*PI*(i/N));
+    for(unsigned int i=(N/2); i<((3*N)/4); i+=1){
+        tab1[i] = sin(2*PI*((float)i/N));
         tab2[i] = 50;
-        tab3[i] = -0.2*(i/N)+100;
+        tab3[i] = -200*((float)i/N)+100;
         tab4[i] = 50;
     }
 
-    for(int i=((3*N)/4); i<N; i+=1){
-        tab1[i] = sin(2*PI*(i/N));
+    for(unsigned int i=((3*N)/4); i<N; i+=1){
+        tab1[i] = sin(2*PI*((float)i/N));
         tab2[i] = 50;
-        tab3[i] = 0.2*(i/N)-200;
+        tab3[i] = 200*((float)i/N)-200;
         tab4[i] = 50;
     }
 
@@ -75,11 +83,12 @@ int main(){
     cout << "ap3 : " << ap(tab3, p) << endl;
     cout << "ap4 : " << ap(tab4, p) << endl;
 
+    cout << "bp1 : " << bp(tab1, p) << endl;
+
 
 
 
 
 }
-
 
 
