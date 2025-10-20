@@ -209,4 +209,129 @@ int main(){
 
 
 // Exercice 4
+#include <iostream>
+
+using namespace std;
+
+int longueur(char* texte){
+    int L = 0;
+    int i = 0;
+    while(texte[i] != '\0'){
+        i+=1;
+        L+=1;
+    }
+    return L;
+}
+
+int compare(char* texte1, char* texte2){
+    if(longueur(texte1) != longueur(texte2)){
+        return 0;
+    }
+    else{
+        int i=0;
+        while(i<longueur(texte1) && texte1[i]==texte2[i]){
+            i+=1;
+        }
+        return i-1==longueur(texte1);
+    }
+}
+
+
+void copie(char* texte1, char* texte2){
+    if(longueur(texte2)>=longueur(texte1)){
+        for(int i=0; i<longueur(texte1); i+=1){
+            texte2[i] = texte1[i];
+        }
+    }
+}
+
+
+int cherche(char x, char* texte){
+    int i=0;
+    while(i<longueur(texte) && texte[i]!=x){
+        i+=1;
+    }
+
+    if(i==longueur(texte)){
+        return -1;
+    }
+    else{
+        return i;
+    }
+}
+
+
+void entier_vers_char(char* chaine, int nombre){
+    if(nombre != 0){
+        int chiffre;
+        int i=0;
+        int longueur = 1;
+        int nb = nombre;
+
+        while(nb/10 != 0){
+            nb=nb/10;
+            longueur += 1;
+        }
+
+        for(i; i<longueur-1; i+=1){
+            chiffre = nombre%10;
+            chaine[longueur-1-i] = (char)chiffre+48;
+            nombre = nombre/10;
+        }
+
+        chaine[0]=(char)nombre+48;
+    }
+    else{
+        chaine[0] = 0;
+    }
+}
+
+
+void majuscule(char* chaine){
+    for(int i=0; i<longueur(chaine); i+=1){
+        if(chaine[i]>=97 && chaine[i]<=122){
+            chaine[i]=chaine[i]-('a'-'A');
+        }
+    }
+}
+
+
+void supprime_car(char* texte, char car){
+    /*for(int i=0; i<longueur(texte); i+=1){
+        if(texte[i]==car){
+            for(int j=i; j<longueur(texte)-1; j+=1){
+                texte[j]=texte[j+1];
+            }
+            texte[longueur(texte)-1]=NULL;
+        }
+    }*/
+    int i=0;
+    int j;
+    while(i<longueur(texte)){
+        if(texte[i]==car){
+            for(j=i; j<longueur(texte)-1; j+=1){
+                texte[j]=texte[j+1];
+            }
+            texte[longueur(texte)-1]=NULL;
+        }
+        else{
+            i+=1;
+        }
+    }
+}
+
+
+int main(){
+    //char mot1[10] = "ihwsfwjsq";
+    //cout << cherche('a', mot1);
+    //char mot2[4] = "txt";
+    //copie(mot1, mot2);
+    //char mot[10];
+    //entier_vers_char(mot, 78190);
+    //cout << mot;
+    char mot[40] = "aijnfsaajnfaajnfenjka";
+    supprime_car(mot, 'a');
+    cout << mot;
+    return 0;
+}
 
