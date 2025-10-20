@@ -154,4 +154,59 @@ int main(){
 
 
 // Exercice 3
+#include <iostream>
+
+using namespace std;
+
+
+unsigned int cherchePosMin(int* tab, unsigned int longueur, unsigned indice_debut){
+    int mini=indice_debut;
+    int i;
+    for(i=indice_debut+1; i<longueur; i+=1){
+        if(tab[i]<tab[mini]){
+            mini = i;
+        }
+    }
+    return mini;
+}
+
+void trieTableau(int* tab, unsigned int longueur){
+    int i;
+    int temp;
+    int mini;
+    for(i=0; i<longueur-1; i+=1){
+        mini = cherchePosMin(tab, longueur, i);
+        temp = tab[i];
+        tab[i] = tab[mini];
+        tab[mini] = temp;
+    }
+}
+
+
+void afficheTab(int* tab, unsigned int longueur){
+    cout << "| ";
+    for(int i=0; i<longueur; i+=1){
+        cout << tab[i] << " | ";
+    }
+}
+
+
+int main(){
+    int N = 7;
+    int tab[N] = {67, 34, 98, 0, 3, 1, 100};
+    afficheTab(tab, N);
+    trieTableau(tab, N);
+    /*for(int i=0; i<N; i+=1){
+        cout << i+1 << "e valeur : " << tab[i] << endl;
+    }*/
+    cout << endl;
+    afficheTab(tab, N);
+
+    return 0;
+}
+
+
+
+
+// Exercice 4
 
