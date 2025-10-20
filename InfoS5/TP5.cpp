@@ -91,4 +91,67 @@ int main()
 
 
 // Exercice 2
+#include <iostream>
+
+const float PI = 3.14159265;
+using namespace std;
+
+
+float volume(float rayon, float hauteur){
+    return 0.333333333*PI*rayon*rayon*hauteur;
+}
+
+void saisie(float& rayon, float& hauteur){
+    cout << ">> Entrez un rayon : ";
+    cin >> rayon;
+    cout << ">> Entrez une hauteur : ";
+    cin >> hauteur;
+}
+
+
+float moy_volume(float* tab_rayon, float* tab_hauteur, int nombre){
+    float sommev = 0;
+    int i;
+    for(i=0; i<nombre; i+=1){
+        sommev += volume(tab_rayon[i], tab_hauteur[i]);
+    }
+    return sommev/nombre;
+}
+
+void saisie_tab(float *tab_rayon, float *tab_hauteur, int nombre){
+    int i=0;
+    float rayon;
+    float hauteur;
+    cout << "***** Saisie des valeurs *****" << endl;
+    for(int i=0; i<nombre; i+=1){
+        cout << "-----------------" << endl;
+        cout << "Saisissez le rayon du " << i+1 << "e cone : ";
+        cin >> rayon;
+        cout << "Saisissez la hauteur du " << i+1 << "e cone : ";
+        cin >> hauteur;
+        tab_rayon[i] = rayon;
+        tab_hauteur[i] = hauteur;
+    }
+    cout << "-----------------" << endl;
+}
+
+
+int main(){
+    //float rayon;
+    //float hauteur;
+    //saisie(rayon, hauteur);
+    float tab_rayon[3];
+    float tab_hauteur[3];
+    saisie_tab(tab_rayon, tab_hauteur, 3);
+    /*for(int i=0; i<3; i+=1){
+        cout << ">> Rayon " << i+1 << " : " << tab_rayon[i] << endl;
+        cout << ">> Hauteur " << i+1 << " : " << tab_hauteur[i] << endl;
+    }*/
+    cout << ">> Moyenne : " << moy_volume(tab_rayon, tab_hauteur, 3) << endl;
+    return 0;
+}
+
+
+
+// Exercice 3
 
